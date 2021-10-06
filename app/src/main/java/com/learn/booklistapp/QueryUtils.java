@@ -156,8 +156,11 @@ public final class QueryUtils {
                 if(volInfo.has("pageCount"))
                 pageCount = volInfo.getInt("pageCount");
 
-                JSONObject thumbnail = volInfo.getJSONObject("imageLinks");
-                String imageLink = thumbnail.getString("thumbnail");
+                String imageLink = null;
+                if(volInfo.has("imageLinks")) {
+                    JSONObject thumbnail = volInfo.getJSONObject("imageLinks");
+                     imageLink = thumbnail.getString("thumbnail");
+                }
 
                 String languageCode = "No info";
                 String languageName = "No info";

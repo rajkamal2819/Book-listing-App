@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -28,12 +29,13 @@ public class BooksListResponse extends AppCompatActivity {
     private TextView mEmptyStateTextView;
     private ProgressBar progressBar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_books_view);
 
-        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
 
         JSON_RESPONSE = getIntent().getStringExtra("Response_Link");
 

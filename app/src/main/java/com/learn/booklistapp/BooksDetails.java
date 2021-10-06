@@ -4,12 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
+import com.bumptech.glide.Glide;
 import com.learn.booklistapp.databinding.ActivityBooksDetailsBinding;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class BooksDetails extends AppCompatActivity {
@@ -23,6 +30,13 @@ public class BooksDetails extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         //getSupportActionBar().hide();
+
+        binding.backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         String bookTitle = getIntent().getStringExtra("tittle");
         String publisher = getIntent().getStringExtra("publisher");
@@ -68,6 +82,12 @@ public class BooksDetails extends AppCompatActivity {
         binding.pageCount.setText(""+pageCount);
 
         //set image we need to do
+       /* try {
+            URL url = new URL(thumbnailLink);
+            Glide.with(BooksDetails.this).load(Uri.parse(String.valueOf(url))).into(binding.bookImageDetails);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }*/
 
         if(language!=null)
         binding.language.setText(language);
@@ -80,6 +100,16 @@ public class BooksDetails extends AppCompatActivity {
         if(buyingLink!=null) {
             binding.buyingLink.setText(buyingLink);
            // binding.buyingLink.setAnimation(anim);
+        }
+
+        try {
+            if(thumbnailLink!=null) {
+                Glide.with(getApplicationContext())
+                        .load(new URL(thumbnailLink))
+                        .into(binding.bookImageDetails);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
 
 

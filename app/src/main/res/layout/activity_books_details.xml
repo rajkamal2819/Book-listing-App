@@ -12,6 +12,14 @@
         tools:context=".BooksDetails">
 
         <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:tint="@color/white" />
+
+        <ImageView
             android:id="@+id/book_image_details"
             android:layout_width="match_parent"
             android:layout_height="120dp"

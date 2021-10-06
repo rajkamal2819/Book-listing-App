@@ -13,6 +13,12 @@
     <color name="green">#CAEEC2</color>
     <color name="purple">#BEA9DF</color>
     <color name="blue">#89CFF0</color>
+    <color name="dark_blue">#1167b1</color>
+
+
+    <color name="grey">#344955</color>
+    <color name="light_grey">#4A6572</color>
+    <color name="dark_grey">#232F34</color>
 
 
 </resources>

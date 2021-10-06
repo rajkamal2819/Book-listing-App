@@ -18,6 +18,14 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout others;
     LinearLayout dataStorage;
 
+    private static final String SAMPLE_ANDROID_DEVELOPMENT_JSON_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=androidDevelopment&maxResults=20";
+    private static final String SAMPLE_CRYPTOGRAPHY_JSON_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=cryptography&maxResults=20";
+    private static final String SAMPLE_CYBER_SECURITY_JSON_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=cyberSecurity&maxResults=20";
+    private static final String SAMPLE_WEB_DEVELOPMENT_JSON_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=webDevelopment&maxResults=20";
+    private static final String SAMPLE_CLOUD_DEVELOPMENT_JSON_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=cloudDevelopment&maxResults=20";
+    private static final String SAMPLE_MACHINE_LEARNING_JSON_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=machineLearning&maxResults=20";
+    private static final String SAMPLE_DATA_STORAGE_JSON_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=dataBase&maxResults=20";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
          android.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                  Intent i = new Intent(MainActivity.this,AndroidDevBooks.class);
+                  Intent i = new Intent(MainActivity.this, BooksListResponse.class);
+                  i.putExtra("Response_Link",SAMPLE_ANDROID_DEVELOPMENT_JSON_RESPONSE);
                   startActivity(i);
              }
          });
@@ -43,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         web.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,WebDevBooks.class);
+                Intent i = new Intent(MainActivity.this, BooksListResponse.class);
+                i.putExtra("Response_Link",SAMPLE_WEB_DEVELOPMENT_JSON_RESPONSE);
                 startActivity(i);
             }
         });
@@ -59,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
         cloudDev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,CloudDevBooks.class);
+                Intent i = new Intent(MainActivity.this, BooksListResponse.class);
+                i.putExtra("Response_Link",SAMPLE_CLOUD_DEVELOPMENT_JSON_RESPONSE);
                 startActivity(i);
             }
         });
@@ -67,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
         cryptography.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,CryptographyBooks.class);
+                Intent i = new Intent(MainActivity.this, BooksListResponse.class);
+                i.putExtra("Response_Link",SAMPLE_CRYPTOGRAPHY_JSON_RESPONSE);
                 startActivity(i);
             }
         });
@@ -75,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
         dataStorage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,DataStorageBooks.class);
+                Intent i = new Intent(MainActivity.this, BooksListResponse.class);
+                i.putExtra("Response_Link",SAMPLE_DATA_STORAGE_JSON_RESPONSE);
                 startActivity(i);
             }
         });
@@ -83,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
         machineLearning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,MachineLearningBooks.class);
+                Intent i = new Intent(MainActivity.this, BooksListResponse.class);
+                i.putExtra("Response_Link",SAMPLE_MACHINE_LEARNING_JSON_RESPONSE);
                 startActivity(i);
             }
         });
@@ -91,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
         cyberSecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,CyberSecurity.class);
+                Intent i = new Intent(MainActivity.this, BooksListResponse.class);
+                i.putExtra("Response_Link",SAMPLE_CYBER_SECURITY_JSON_RESPONSE);
                 startActivity(i);
             }
         });

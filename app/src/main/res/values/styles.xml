@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.AppCompat.NoActionBar.mainPage">
+        <item name="android:colorPrimaryDark">#222222</item>
+        <item name="android:navigationBarColor">@color/dark_grey</item>
+    </style>
+
+    <style name="Theme.AppCompat.NoActionBar.booksDetails">
+        <item name="android:colorPrimaryDark">@color/dark_grey</item>
+        <item name="android:navigationBarColor">@color/dark_grey</item>
+    </style>
+
+</resources>

@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookListApp/app/src/main/res/drawable/edittext_rounded.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookListApp/app/src/main/res/drawable/focus_animation.xml" value="0.2703125" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookListApp/app/src/main/res/drawable/layout_shape.xml" value="0.2703125" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookListApp/app/src/main/res/layout-v26/activity_books_list_response.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookListApp/app/src/main/res/layout/activity_android_dev_books.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookListApp/app/src/main/res/layout/activity_books_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookListApp/app/src/main/res/layout/activity_books_list_response.xml" value="0.25416666666666665" />

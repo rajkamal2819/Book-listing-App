@@ -26,8 +26,6 @@ import java.util.ArrayList;
 
 public class ListAdapter extends ArrayAdapter<BooksInfo> {
 
-    Bitmap myBitmap;
-
     public ListAdapter(@NonNull Context context, @NonNull ArrayList<BooksInfo> objects) {
         super(context, 0, objects);
     }
@@ -49,7 +47,12 @@ public class ListAdapter extends ArrayAdapter<BooksInfo> {
         bookTittle.setText(currentBook.getBookTitle());
 
         TextView authorName = listItemView.findViewById(R.id.author_textView);
-        authorName.setText("By:- "+currentBook.getAuthors().get(0));
+        String Author = "None";
+        if(currentBook.getAuthors()!=null) {
+            if (currentBook.getAuthors().size()>0)
+                Author = "By:- " + currentBook.getAuthors().get(0);
+        }
+        authorName.setText(Author);
 
         ImageView bookImg = listItemView.findViewById(R.id.book_image);
         try {

@@ -23,7 +23,6 @@ import java.util.Locale;
 
 public final class QueryUtils {
 
-    private static final String LOCATION_SEPARATOR = " of ";
     private static String LOG_TAG = QueryUtils.class.getSimpleName();
 
     public static ArrayList<BooksInfo> fetchEarthquakeData(String requestUrl) {
@@ -123,88 +122,95 @@ public final class QueryUtils {
 
         try {
             JSONObject baseJasonObject = new JSONObject(booksJsonResponse);
-            JSONArray booksArray = baseJasonObject.getJSONArray("items");
-
-            for (int i = 0; i < booksArray.length(); i++) {
-                JSONObject currentBook = booksArray.getJSONObject(i);
-                JSONObject volInfo = currentBook.getJSONObject("volumeInfo");
-
-                String tittle = "No title";
-                if(volInfo.has("title"))
-                tittle = volInfo.getString("title");
-
-                String publisher = "No Info";
-                if(volInfo.has("publisher"))
-                    publisher = volInfo.getString("publisher");
-
-                JSONArray authors = volInfo.getJSONArray("authors");
-                ArrayList<String> authorList = new ArrayList<>();
-                for (int j = 0; j < authors.length(); j++) {
-                    authorList.add(authors.getString(j));
-                }
-
-
-                String publishingDate = "No info";
-                if(volInfo.has("publishedDate"))
-                publishingDate = volInfo.getString("publishedDate");
-
-                String description = "No info";
-                if(volInfo.has("description"))
-                description = volInfo.getString("description");
-
-                int pageCount = -1;
-                if(volInfo.has("pageCount"))
-                pageCount = volInfo.getInt("pageCount");
-
-                String imageLink = null;
-                if(volInfo.has("imageLinks")) {
-                    JSONObject thumbnail = volInfo.getJSONObject("imageLinks");
-                     imageLink = thumbnail.getString("thumbnail");
-                }
-
-                String languageCode = "No info";
-                String languageName = "No info";
-                if(volInfo.has("language")) {
-                    languageCode = volInfo.getString("language");
-                    Locale loc = new Locale(languageCode);
-                     languageName = loc.getDisplayLanguage(loc);
-                }
-
-                String previewLink = "No link";
-                if(volInfo.has("previewLink"))
-                previewLink = volInfo.getString("previewLink");
-
-                int rating = 0;
-                if (volInfo.has("averageRating"))
-                    rating = volInfo.getInt("averageRating");
-
-                int ratingCount = 0;
-                if (volInfo.has("ratingsCount"))
-                    ratingCount = volInfo.getInt("ratingsCount");
-
-                JSONObject buy = currentBook.getJSONObject("saleInfo");
-
-                String buyingLink = "No Buying link";
-                if(buy.has("buyLink"))
-                      buyingLink = buy.getString("buyLink");
-
-                BooksInfo booksInfo = new BooksInfo();
-                booksInfo.setAuthors(authorList);
-                booksInfo.setBookTitle(tittle);
-                booksInfo.setDescription(description);
-                booksInfo.setBuyingLink(buyingLink);
-                booksInfo.setLanguage(languageName);
-                booksInfo.setPageCount(pageCount);
-                booksInfo.setRating(rating);
-                booksInfo.setRatingCount(ratingCount);
-                booksInfo.setThumbnailLink(imageLink);
-                booksInfo.setPreviewLink(previewLink);
-                booksInfo.setPublisher(publisher);
-                booksInfo.setPublishingDate(publishingDate);
-
-                booksInfos.add(booksInfo);
-
+            JSONArray booksArray = null;
+            if (baseJasonObject.has("items")) {
+                booksArray = baseJasonObject.getJSONArray("items");
             }
+
+            if (booksArray != null){
+                for (int i = 0; i < booksArray.length(); i++) {
+                    JSONObject currentBook = booksArray.getJSONObject(i);
+                    JSONObject volInfo = currentBook.getJSONObject("volumeInfo");
+
+                    String tittle = "No title";
+                    if (volInfo.has("title"))
+                        tittle = volInfo.getString("title");
+
+                    String publisher = "No Info";
+                    if (volInfo.has("publisher"))
+                        publisher = volInfo.getString("publisher");
+
+                    ArrayList<String> authorList = new ArrayList<>();
+                    if (volInfo.has("authors")) {
+                        JSONArray authors = volInfo.getJSONArray("authors");
+                        for (int j = 0; j < authors.length(); j++) {
+                            authorList.add(authors.getString(j));
+                        }
+                    }
+
+
+                    String publishingDate = "No info";
+                    if (volInfo.has("publishedDate"))
+                        publishingDate = volInfo.getString("publishedDate");
+
+                    String description = "No info";
+                    if (volInfo.has("description"))
+                        description = volInfo.getString("description");
+
+                    int pageCount = -1;
+                    if (volInfo.has("pageCount"))
+                        pageCount = volInfo.getInt("pageCount");
+
+                    String imageLink = null;
+                    if (volInfo.has("imageLinks")) {
+                        JSONObject thumbnail = volInfo.getJSONObject("imageLinks");
+                        imageLink = thumbnail.getString("thumbnail");
+                    }
+
+                    String languageCode = "No info";
+                    String languageName = "No info";
+                    if (volInfo.has("language")) {
+                        languageCode = volInfo.getString("language");
+                        Locale loc = new Locale(languageCode);
+                        languageName = loc.getDisplayLanguage(loc);
+                    }
+
+                    String previewLink = "No link";
+                    if (volInfo.has("previewLink"))
+                        previewLink = volInfo.getString("previewLink");
+
+                    int rating = 0;
+                    if (volInfo.has("averageRating"))
+                        rating = volInfo.getInt("averageRating");
+
+                    int ratingCount = 0;
+                    if (volInfo.has("ratingsCount"))
+                        ratingCount = volInfo.getInt("ratingsCount");
+
+                    JSONObject buy = currentBook.getJSONObject("saleInfo");
+
+                    String buyingLink = "No Buying link";
+                    if (buy.has("buyLink"))
+                        buyingLink = buy.getString("buyLink");
+
+                    BooksInfo booksInfo = new BooksInfo();
+                    booksInfo.setAuthors(authorList);
+                    booksInfo.setBookTitle(tittle);
+                    booksInfo.setDescription(description);
+                    booksInfo.setBuyingLink(buyingLink);
+                    booksInfo.setLanguage(languageName);
+                    booksInfo.setPageCount(pageCount);
+                    booksInfo.setRating(rating);
+                    booksInfo.setRatingCount(ratingCount);
+                    booksInfo.setThumbnailLink(imageLink);
+                    booksInfo.setPreviewLink(previewLink);
+                    booksInfo.setPublisher(publisher);
+                    booksInfo.setPublishingDate(publishingDate);
+
+                    booksInfos.add(booksInfo);
+
+                }
+        }
             Log.i(LOG_TAG, "Extracting Json Features");
             return booksInfos;
         } catch (JSONException e) {

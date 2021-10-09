@@ -17,17 +17,22 @@
         android:theme="@style/Theme.BookListApp">
         <activity
             android:name=".BooksDetails"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar.booksDetails"
             android:exported="true" />
         <activity
             android:name=".OtherBooks"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar.booksDetails"
             android:exported="true" />
         <activity
             android:name=".BooksListResponse"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar.booksDetails"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar.mainPage">
             <intent-filter>

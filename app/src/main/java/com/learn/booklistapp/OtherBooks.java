@@ -28,6 +28,7 @@ public class OtherBooks extends AppCompatActivity {
     private TextView mEmptyStateTextView;
     private ProgressBar progressBar;
     private ListAdapter mAdapter;
+   // int counterItem = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,8 @@ public class OtherBooks extends AppCompatActivity {
 
 
 
-                SAMPLE_Json_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=&maxResults=20";
+                SAMPLE_Json_RESPONSE = "" +
+                        "https://www.googleapis.com/books/v1/volumes?q=&maxResults=30";
                 String searchText = "";
                 searchText = binding.searchEdittext.getText().toString();
 
@@ -65,9 +67,10 @@ public class OtherBooks extends AppCompatActivity {
             }
         });
 
-       /* binding.nextItemsButton.setOnClickListener(new View.OnClickListener() {
+        /*binding.nextItemsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                  counterItem +=20;
 
             }
         });*/

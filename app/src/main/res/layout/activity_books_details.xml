@@ -8,6 +8,157 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/book_image_details"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_below="@id/backArrow"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/books_placeholder" />
+
+        <TextView
+            android:id="@+id/book_name_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/backArrow"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@id/book_image_details"
+            android:text="Empty"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+
+        <TextView
+            android:id="@+id/authors_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/book_name_details"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@id/book_image_details"
+            android:text="No Author"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/publisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/authors_details"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@id/book_image_details"
+            android:text="No Publisher"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/ratings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/book_image_details"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="No Ratings"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/ratingCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ratings"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Rated by"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ratingCount"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="Empty"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/language"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/previewLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:elevation="35dp"
+            android:background="@drawable/button_shape"
+            android:padding="5dp"
+            android:text="Preview Book" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buyingLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:elevation="35dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape"
+            android:padding="5dp"
+            android:text="Buy Book" />
+
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayout"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/edittext_rounded"
+            android:gravity="center"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:text="Empty"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
+    <!--<RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".BooksDetails">
 
@@ -336,6 +487,8 @@
             </LinearLayout>
 
         </LinearLayout>
+
+    </RelativeLayout>-->
 
     </RelativeLayout>
 

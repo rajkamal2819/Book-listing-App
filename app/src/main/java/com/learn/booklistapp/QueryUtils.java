@@ -175,13 +175,13 @@ public final class QueryUtils {
                         languageName = loc.getDisplayLanguage(loc);
                     }
 
-                    String previewLink = "No link";
+                    String previewLink = null;
                     if (volInfo.has("previewLink"))
                         previewLink = volInfo.getString("previewLink");
 
-                    int rating = 0;
+                    double rating = 0;
                     if (volInfo.has("averageRating"))
-                        rating = volInfo.getInt("averageRating");
+                        rating = volInfo.getDouble("averageRating");
 
                     int ratingCount = 0;
                     if (volInfo.has("ratingsCount"))
@@ -189,7 +189,7 @@ public final class QueryUtils {
 
                     JSONObject buy = currentBook.getJSONObject("saleInfo");
 
-                    String buyingLink = "No Buying link";
+                    String buyingLink = null;
                     if (buy.has("buyLink"))
                         buyingLink = buy.getString("buyLink");
 

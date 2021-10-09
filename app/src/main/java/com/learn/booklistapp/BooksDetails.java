@@ -7,9 +7,11 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.learn.booklistapp.databinding.ActivityBooksDetailsBinding;
@@ -48,7 +50,7 @@ public class BooksDetails extends AppCompatActivity {
         String language = getIntent().getStringExtra("language");
         String previewLink = getIntent().getStringExtra("previewLink");
         String buyingLink = getIntent().getStringExtra("buyingLink");
-        int rating = getIntent().getIntExtra("rating", 0);
+        double rating = getIntent().getDoubleExtra("rating", 0);
         int ratingCount = getIntent().getIntExtra("ratingCount", 0);
 
         /*Animation anim = new AlphaAnimation(0.0f, 1.0f);
@@ -60,10 +62,10 @@ public class BooksDetails extends AppCompatActivity {
         if(bookTitle!=null)
         binding.bookNameDetails.setText(bookTitle);
         if(publisher!=null)
-        binding.publisher.setText(publisher);
+        binding.publisher.setText("Published by:\n"+publisher);
 
         if(authors!=null) {
-            StringBuilder authorsName = new StringBuilder();
+            StringBuilder authorsName = new StringBuilder("Authors:\n");
             for (int i = 0; i < authors.size(); i++) {
                 if (i != authors.size() - 1)
                     authorsName.append(authors.get(i) + " , ");
@@ -73,13 +75,13 @@ public class BooksDetails extends AppCompatActivity {
             binding.authorsDetails.setText(authorsName.toString());
         }
 
-        if(publishingDate!=null)
-        binding.publisingDate.setText(publishingDate);
+       // if(publishingDate!=null)
+       // binding.publisingDate.setText(publishingDate);
 
         if(description!=null)
         binding.description.setText(description);
 
-        binding.pageCount.setText(""+pageCount);
+       // binding.pageCount.setText(""+pageCount);
 
         //set image we need to do
        /* try {
@@ -93,12 +95,38 @@ public class BooksDetails extends AppCompatActivity {
         binding.language.setText(language);
 
         if(previewLink!=null) {
-            binding.previewLink.setText(previewLink);
+            binding.previewLink.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(previewLink != null) {
+                        Uri uri = Uri.parse(previewLink);
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),"Sorry Preview Link is Not Available",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
            // binding.previewLink.setAnimation(anim);
         }
 
         if(buyingLink!=null) {
-            binding.buyingLink.setText(buyingLink);
+            binding.buyingLink.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("bookDetails","buyLInk");
+                    if(buyingLink!=null) {
+                        Uri uri = Uri.parse(buyingLink);
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                    else {
+                        Log.i("bookDetails","buyLinjsihfi");
+                        Toast.makeText(getApplicationContext(),"Sorry Buying Link is Not Available",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
            // binding.buyingLink.setAnimation(anim);
         }
 

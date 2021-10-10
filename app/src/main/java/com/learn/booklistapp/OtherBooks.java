@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.learn.booklistapp.databinding.ActivityOtherBooksBinding;
 
@@ -29,6 +30,8 @@ public class OtherBooks extends AppCompatActivity {
     private ProgressBar progressBar;
     private ListAdapter mAdapter;
    // int counterItem = 20;
+    private int indexCounter = 0;
+    boolean isExecuted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +42,11 @@ public class OtherBooks extends AppCompatActivity {
         //length till equal to char is 46
         Log.d(Log_tag,SAMPLE_Json_RESPONSE);
         SAMPLE_Json_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=&maxResults=20";
+        SAMPLE_Json_RESPONSE += "&startIndex="+indexCounter;
 
         progressBar = findViewById(R.id.loading_spinner);
 
+        Log.e(Log_tag,"Index Counter = "+indexCounter);
 
         binding.searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,30 +55,54 @@ public class OtherBooks extends AppCompatActivity {
 
 
                 SAMPLE_Json_RESPONSE = "" +
-                        "https://www.googleapis.com/books/v1/volumes?q=&maxResults=30";
+                        "https://www.googleapis.com/books/v1/volumes?q=&maxResults=20";
                 String searchText = "";
                 searchText = binding.searchEdittext.getText().toString();
-
 
                 StringBuilder str = new StringBuilder(SAMPLE_Json_RESPONSE);
                 str.insert(46,searchText);
 
                 SAMPLE_Json_RESPONSE = str.toString();
+                SAMPLE_Json_RESPONSE += "&startIndex="+indexCounter;
+                Log.e(Log_tag,"Index Counter = "+indexCounter);
 
                 progressBar.setVisibility(View.VISIBLE);
                 UtilsAsyncTask task = new UtilsAsyncTask();
                 Log.d(Log_tag,SAMPLE_Json_RESPONSE);
                 task.execute();
+                isExecuted = true;
             }
         });
 
-        /*binding.nextItemsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                  counterItem +=20;
 
-            }
-        });*/
+
+            binding.nextItemsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(isExecuted) {
+                    indexCounter += 21;
+                    SAMPLE_Json_RESPONSE = "" +
+                            "https://www.googleapis.com/books/v1/volumes?q=&maxResults=20";
+                    String searchText = "";
+                    searchText = binding.searchEdittext.getText().toString();
+
+                    StringBuilder str = new StringBuilder(SAMPLE_Json_RESPONSE);
+                    str.insert(46, searchText);
+
+                    SAMPLE_Json_RESPONSE = str.toString();
+                    SAMPLE_Json_RESPONSE += "&startIndex=" + indexCounter;
+
+                    Log.e(Log_tag, "Index Counter = " + indexCounter);
+
+                    UtilsAsyncTask task = new UtilsAsyncTask();
+                    task.execute();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),"Please First Type and Search Some Books",Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
 
         mEmptyStateTextView = (TextView) findViewById(R.id.empty_view_others);
 

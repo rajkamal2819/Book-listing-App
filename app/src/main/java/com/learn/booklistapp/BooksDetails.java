@@ -94,7 +94,7 @@ public class BooksDetails extends AppCompatActivity {
         if(language!=null)
         binding.language.setText(language);
 
-        if(previewLink!=null) {
+
             binding.previewLink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -109,9 +109,8 @@ public class BooksDetails extends AppCompatActivity {
                 }
             });
            // binding.previewLink.setAnimation(anim);
-        }
 
-        if(buyingLink!=null) {
+
             binding.buyingLink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -128,7 +127,6 @@ public class BooksDetails extends AppCompatActivity {
                 }
             });
            // binding.buyingLink.setAnimation(anim);
-        }
 
         try {
             if(thumbnailLink!=null) {

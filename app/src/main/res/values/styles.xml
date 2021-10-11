@@ -11,4 +11,8 @@
         <item name="android:navigationBarColor">@color/dark_grey</item>
     </style>
 
+    <style name="loginTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:colorPrimaryDark">@color/dark_grey</item>
+    </style>
+
 </resources>

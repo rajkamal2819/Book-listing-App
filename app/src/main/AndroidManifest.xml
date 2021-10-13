@@ -16,14 +16,18 @@
         android:theme="@style/Theme.BookListApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MainActivity2"
+            android:theme="@style/loginTheme"
+            android:exported="true" />
+        <activity
             android:name=".Authentication"
             android:exported="true"
             android:theme="@style/loginTheme">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".BooksDetails"
@@ -44,9 +48,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar.mainPage">
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar.mainPage"/>
     </application>
 
 </manifest>

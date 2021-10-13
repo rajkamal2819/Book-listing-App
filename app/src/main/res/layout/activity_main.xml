@@ -43,7 +43,7 @@
             android:layout_margin="20dp"
             android:rowCount="3"
             android:columnCount="2">
-        
+
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

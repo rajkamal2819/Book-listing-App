@@ -17,10 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/light_grey"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:menu="@menu/main_activity_navigation_menu"
-        app:labelVisibilityMode="labeled" />
+        android:background="@color/white"
+        app:itemIconTint="@color/dark_grey"
+        app:itemTextColor="@color/dark_grey"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/main_activity_navigation_menu" />
 
 </RelativeLayout>

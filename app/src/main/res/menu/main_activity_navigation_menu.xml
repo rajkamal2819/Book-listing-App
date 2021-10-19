@@ -4,17 +4,17 @@
 
     <item android:title="Home"
         android:icon="@drawable/home_icon"
-        android:color="@color/white"
+        android:color="@color/dark_grey"
         android:id="@+id/home"/>
 
     <item android:title="Categories"
-        android:color="@color/white"
+        android:color="@color/dark_grey"
         android:icon="@drawable/category_icon"
         android:id="@+id/categories"/>
 
     <item
         android:title="Profile"
-        android:color="@color/white"
+        android:color="@color/dark_grey"
         android:icon="@drawable/profile_icon"
         android:id="@+id/profile"/>
 

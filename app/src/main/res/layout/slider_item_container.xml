@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@drawable/edittext_auth"
     android:elevation="40dp"
     android:orientation="vertical">
 
@@ -14,6 +13,7 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:adjustViewBounds="true"
+        android:background="@drawable/edittext_auth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

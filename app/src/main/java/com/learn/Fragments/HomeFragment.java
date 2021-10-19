@@ -6,17 +6,18 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.learn.Adapters.Slider2Adapter;
 import com.learn.Adapters.SliderAdapter;
 import com.learn.booklistapp.BooksInfo;
-import com.learn.booklistapp.MainActivity2;
 import com.learn.booklistapp.QueryUtils;
 import com.learn.booklistapp.R;
-import com.learn.booklistapp.databinding.ActivityMain2Binding;
 import com.learn.booklistapp.databinding.FragmentHomeBinding;
 
 import java.net.URL;
@@ -30,24 +31,79 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
+    FirebaseDatabase database;
+    FirebaseAuth auth;
+
     FragmentHomeBinding binding;
-    private static final String JSON_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=androidDevelopment&orderBy=newest&maxResults=20";
+    boolean isJsonReady = false;
+    private String SAMPLE_Json_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=Litrature&maxResults=20";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(getLayoutInflater());
 
-        UtilsAsyncTask task = new UtilsAsyncTask();
-        task.execute();
+            HomeAsyncTask task = new HomeAsyncTask();
+            task.execute();
+
+            binding.done.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String interests = binding.edittextInterests.getText().toString();
+                    String JsonStart = "" + "https://www.googleapis.com/books/v1/volumes?q=";
+                    String JsonEnd =       "&orderBy=newest&maxResults=20";
+                    JsonStart += binding.edittextInterests.getText().toString();
+                    String JsonLink = JsonStart + JsonEnd;
+                    SAMPLE_Json_RESPONSE = JsonLink;
+                    HomeAsyncTask asyncTask = new HomeAsyncTask();
+                    asyncTask.execute();
+                    Log.i("Response Link: ",JsonLink);
+                    binding.edittextInterests.setText("");
+                }
+            });
 
         return binding.getRoot();
     }
 
-    private class UtilsAsyncTask extends AsyncTask<URL, Void, ArrayList<BooksInfo>> {
+   /* public void giveRequiredJsonLink(){
+
+        FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser()
+                .getUid()).child("interests").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String JsonStart = "" + "https://www.googleapis.com/books/v1/volumes?q=";
+                String JsonEnd =       "&orderBy=newest&maxResults=20";
+                interests.setInterests(snapshot.getValue(String.class));
+              *//*  String searchText = snapshot.getValue(String.class);
+                JsonStart += searchText;
+                String JsonLink = JsonStart + JsonEnd;*//*
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }*/
+
+     /*public void giveRequiredJsonLink(){
+
+       String interests = binding.edittextInterests.getText().toString();
+         String JsonStart = "" + "https://www.googleapis.com/books/v1/volumes?q=";
+         String JsonEnd =       "&orderBy=newest&maxResults=20";
+         JsonStart =
+         String JsonLink = JsonStart + JsonEnd;
+
+    }*/
+
+    private class HomeAsyncTask extends AsyncTask<URL, Void, ArrayList<BooksInfo>> {
         @Override
         protected ArrayList<BooksInfo> doInBackground(URL... urls) {
-            ArrayList<BooksInfo> event = QueryUtils.fetchEarthquakeData(JSON_RESPONSE);            //also we can use  urls[0]
+            ArrayList<BooksInfo> event = QueryUtils.fetchEarthquakeData(SAMPLE_Json_RESPONSE);   //also we can use  urls[0]
+            Log.d("HOme Fragment Utils",SAMPLE_Json_RESPONSE);
             return event;
         }
 
@@ -57,16 +113,20 @@ public class HomeFragment extends Fragment {
             // progressBar.setVisibility(View.GONE);
 
             if (event == null) {
+                Log.e("HOme Fragment Event","NULL Event");
                 return;
             }
 
-            Toast.makeText(getContext(), "Images Loaded", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getContext(), "Images Loaded", Toast.LENGTH_SHORT).show();
 
             //  mEmptyStateTextView.setText("No Books Found");
             //  updateUi(event);
             fetchImages(event);
 
+            fetchSlider2Info(event);
+
         }
+
     }
 
     public void fetchImages(List<BooksInfo> infos){
@@ -110,6 +170,18 @@ public class HomeFragment extends Fragment {
                 page.setTranslationX(myOffset);
             }
         });
+
+    }
+
+    public void fetchSlider2Info(List<BooksInfo> booksInfo){
+
+        Slider2Adapter sliderAdapter = new Slider2Adapter(booksInfo,binding.viewpager3,getContext());
+        binding.viewpager3.setAdapter(sliderAdapter);
+
+        binding.viewpager3.setClipToPadding(false);
+        binding.viewpager3.setClipChildren(false);
+        binding.viewpager3.setOffscreenPageLimit(3);
+        binding.viewpager3.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
 
     }
 

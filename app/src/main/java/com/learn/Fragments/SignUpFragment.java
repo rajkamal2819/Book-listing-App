@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.learn.Models.Users;
 import com.learn.booklistapp.MainActivity;
 import com.learn.booklistapp.R;
+import com.learn.booklistapp.UserPreferenceBook;
 import com.learn.booklistapp.databinding.FragmentSignUpBinding;
 
 
@@ -74,7 +75,7 @@ public class SignUpFragment extends Fragment {
                                         //setting the value in Users node --> to this id(specific node in users) and its value is this
                                         firebaseDatabase.getReference().child("Users").child(id).setValue(newUser);
                                         Toast.makeText(getContext(), "User Created Successfully", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(getContext(), MainActivity.class);
+                                        Intent i = new Intent(getContext(), UserPreferenceBook.class);
                                         startActivity(i);
                                     } else {
                                         Toast.makeText(getContext(), task.getException().toString(), Toast.LENGTH_SHORT).show();

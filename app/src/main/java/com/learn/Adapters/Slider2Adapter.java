@@ -2,9 +2,11 @@ package com.learn.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,35 +18,34 @@ import com.learn.booklistapp.BooksDetails;
 import com.learn.booklistapp.BooksInfo;
 import com.learn.booklistapp.R;
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.squareup.picasso.Picasso;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderViewHolder> {
+public class Slider2Adapter extends RecyclerView.Adapter<Slider2Adapter.Slider2ViewHolder> {
 
     private List<BooksInfo> list;
-    private ViewPager2 viewPager2;
+    private ViewPager2 viewPager;
     private Context context;
 
-    public SliderAdapter(List<BooksInfo> list, ViewPager2 viewPager2, Context context) {
+    public Slider2Adapter(List<BooksInfo> list, ViewPager2 viewPager2, Context context) {
         this.list = list;
-        this.viewPager2 = viewPager2;
+        this.viewPager = viewPager2;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public SliderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new SliderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.slider_item_container, parent, false));
+    public Slider2Adapter.Slider2ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new Slider2ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.slider2_container, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Slider2ViewHolder holder, int position) {
         int pos = holder.getAdapterPosition();
         BooksInfo currBook = list.get(pos);
-        holder.setImageView(list.get(pos));
+        holder.setInfo(list.get(pos));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,32 +73,35 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
         return list.size();
     }
 
-    class SliderViewHolder extends RecyclerView.ViewHolder {
+    class Slider2ViewHolder extends RecyclerView.ViewHolder {
 
-        private RoundedImageView imageView;
+        private ImageView imageView;
+        private TextView tittle;
+        private TextView author;
 
-        public SliderViewHolder(@NonNull View itemView) {
+        public Slider2ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.roundedImageView);
+            imageView = itemView.findViewById(R.id.book_image_slider2);
+            tittle = itemView.findViewById(R.id.bookName_slider2);
+            author = itemView.findViewById(R.id.author_slider2);
         }
 
-        void setImageView(BooksInfo sliderItem) {
+        void setInfo(BooksInfo sliderItem) {
 
-            if (sliderItem.getThumbnailLink() != null) {
-                try {
-                    Glide.with(imageView.getContext())
-                            .load(new URL(sliderItem.getThumbnailLink()))
-                            .into(imageView);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Glide.with(imageView.getContext()).load(R.drawable.books_placeholder).into(imageView);
+            try {
+                Glide.with(imageView.getContext())
+                        .load(new URL(sliderItem.getThumbnailLink()))
+                        .into(imageView);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
             }
+
+            tittle.setText(sliderItem.getBookTitle());
+
+            author.setText("By:- " + sliderItem.getAuthors().get(0));
+
         }
 
 
     }
-
-
 }

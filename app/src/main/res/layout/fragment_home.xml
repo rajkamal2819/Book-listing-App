@@ -15,25 +15,62 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="4dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:elevation="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/edittext_interests"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_baseline_search_24"
+                    android:drawablePadding="5dp"
+                    android:hint="Enter Your Interests"
+                    android:padding="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/done"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="?selectableItemBackground"
+                    android:src="@drawable/ic_baseline_done_24"
+                    android:layout_margin="10dp"/>
+
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/latest_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/grey"
-                android:text="Latest for you"
                 android:fontFamily="sans-serif-medium"
+                android:text="Latest for you"
+                android:textColor="@color/grey"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
 
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewpager2"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_alignParentTop="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
@@ -209,27 +246,47 @@
             </GridLayout>
 
             <TextView
-                android:id="@+id/technology_text"
+                android:id="@+id/trending_topics"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="Technology"
+                android:text="Trending Topics For You"
                 android:textColor="@color/grey"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
             <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager3"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
+                android:padding="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/technology_text" />
+                app:layout_constraintTop_toBottomOf="@id/trending_topics" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:layout_marginStart="177dp"
+                android:layout_marginEnd="206dp"
+                android:layout_marginBottom="1dp"
+                android:text="Tell us your experience"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:padding="8dp"
+                android:background="@drawable/edittext_rounded"
+                android:backgroundTint="@color/blue"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/viewpager3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

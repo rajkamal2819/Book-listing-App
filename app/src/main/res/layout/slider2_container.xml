@@ -1,70 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="200dp"
+    android:layout_height="250dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="20dp"
-    android:background="@drawable/edittext_auth"
+    app:cardCornerRadius="20dp"
     android:layout_margin="10dp"
-    android:layout_height="match_parent">
+    app:cardElevation="20dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
+        android:id="@+id/background_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_grey"
-        android:layout_gravity="fill">
+        android:background="@color/purple"
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/book_image_slider2"
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            android:src="@drawable/books_placeholder"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_width="250dp"
+            android:layout_height="120dp"
+            android:padding="10dp"
+            android:src="@drawable/books_placeholder" />
 
         <TextView
             android:id="@+id/bookName_slider2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_below="@id/book_image_slider2"
+            android:layout_centerHorizontal="true"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:maxWidth="200dp"
-            android:text="Book Name"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:autoSizeMaxTextSize="100sp"
             android:autoSizeMinTextSize="12sp"
             android:autoSizeStepGranularity="2sp"
             android:autoSizeTextType="uniform"
+            android:text="Course Name"
             android:textSize="18sp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toEndOf="@+id/book_image_slider2"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/author_slider2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Author Name"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/bookName_slider2"
-            app:layout_constraintTop_toBottomOf="@+id/bookName_slider2" />
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/rating_slider2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Rating"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/book_image_slider2"
-            app:layout_constraintStart_toStartOf="@+id/author_slider2"
-            app:layout_constraintTop_toBottomOf="@+id/author_slider2" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

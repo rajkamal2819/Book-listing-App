@@ -26,12 +26,12 @@ import java.util.List;
 public class Slider2Adapter extends RecyclerView.Adapter<Slider2Adapter.Slider2ViewHolder> {
 
     private List<BooksInfo> list;
-    private ViewPager2 viewPager;
+    private RecyclerView recyclerView;
     private Context context;
 
-    public Slider2Adapter(List<BooksInfo> list, ViewPager2 viewPager2, Context context) {
+    public Slider2Adapter(List<BooksInfo> list, RecyclerView recyclerView, Context context) {
         this.list = list;
-        this.viewPager = viewPager2;
+        this.recyclerView = recyclerView;
         this.context = context;
     }
 
@@ -83,7 +83,7 @@ public class Slider2Adapter extends RecyclerView.Adapter<Slider2Adapter.Slider2V
             super(itemView);
             imageView = itemView.findViewById(R.id.book_image_slider2);
             tittle = itemView.findViewById(R.id.bookName_slider2);
-            author = itemView.findViewById(R.id.author_slider2);
+           // author = itemView.findViewById(R.id.author_slider2);
         }
 
         void setInfo(BooksInfo sliderItem) {
@@ -98,7 +98,7 @@ public class Slider2Adapter extends RecyclerView.Adapter<Slider2Adapter.Slider2V
 
             tittle.setText(sliderItem.getBookTitle());
 
-            author.setText("By:- " + sliderItem.getAuthors().get(0));
+          //  author.setText("By:- " + sliderItem.getAuthors().get(0));
 
         }
 

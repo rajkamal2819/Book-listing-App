@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,12 +26,12 @@ import java.util.List;
 public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderViewHolder> {
 
     private List<BooksInfo> list;
-    private ViewPager2 viewPager2;
+    private RecyclerView recyclerView;
     private Context context;
 
-    public SliderAdapter(List<BooksInfo> list, ViewPager2 viewPager2, Context context) {
+    public SliderAdapter(List<BooksInfo> list, RecyclerView recyclerView, Context context) {
         this.list = list;
-        this.viewPager2 = viewPager2;
+        this.recyclerView = recyclerView;
         this.context = context;
     }
 
@@ -74,18 +75,18 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
 
     class SliderViewHolder extends RecyclerView.ViewHolder {
 
-        private RoundedImageView imageView;
+        private ImageView imageView;
 
         public SliderViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.roundedImageView);
+            imageView = itemView.findViewById(R.id.book_image_slider1);
         }
 
         void setImageView(BooksInfo sliderItem) {
 
             if (sliderItem.getThumbnailLink() != null) {
                 try {
-                    Glide.with(imageView.getContext())
+                    Glide.with(context)
                             .load(new URL(sliderItem.getThumbnailLink()))
                             .into(imageView);
                 } catch (MalformedURLException e) {

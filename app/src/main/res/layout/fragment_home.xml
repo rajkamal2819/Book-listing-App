@@ -1,9 +1,17 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.learn.Fragments.HomeFragment">
+
+    <ProgressBar
+        android:id="@+id/loading_spinner"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -67,15 +75,11 @@
                 app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
 
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewpager2"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginStart="10dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:paddingLeft="80dp"
-                android:paddingRight="80dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/latest_text" />
@@ -93,7 +97,7 @@
                 android:rowCount="3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/viewpager2">
+                app:layout_constraintTop_toBottomOf="@id/recyclerView2">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -258,14 +262,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewpager3"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginStart="10dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:padding="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/trending_topics" />
@@ -286,10 +287,10 @@
                 android:background="@drawable/edittext_rounded"
                 android:backgroundTint="@color/blue"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/viewpager3" />
+                app:layout_constraintTop_toBottomOf="@id/recyclerView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
-</FrameLayout>
+</RelativeLayout>

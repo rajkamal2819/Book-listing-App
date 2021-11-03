@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey"
-    tools:context=".OtherBooks">
+    tools:context=".MagazinesActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -40,8 +39,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:elevation="30dp"
             android:backgroundTint="@color/purple"
+            android:elevation="30dp"
             android:text="Search" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -53,9 +52,9 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:elevation="30dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/purple"
+            android:elevation="30dp"
             android:text="Next" />
 
     </RelativeLayout>
@@ -64,33 +63,33 @@
         android:id="@+id/relativeLayoutList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_grey"
+        android:background="@color/white"
         android:layout_below="@id/relativeLayout2">
 
-        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/listView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@null"
             android:dividerHeight="0dp"
             android:orientation="vertical" />
 
-            <!-- Empty view is only visible when the list has no items. -->
-            <TextView
-                android:id="@+id/empty_view_others"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:textColor="@color/white"
-                android:textAppearance="?android:textAppearanceMedium" />
+        <!-- Empty view is only visible when the list has no items. -->
+        <TextView
+            android:id="@+id/empty_no_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textAppearance="?android:textAppearanceMedium" />
 
-             <ProgressBar
-                 android:id="@+id/loading_spinner"
-                 android:layout_centerInParent="true"
-                 android:visibility="gone"
-                 style="@style/Widget.AppCompat.ProgressBar"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content" />
+        <ProgressBar
+            android:id="@+id/progress_spineer"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 

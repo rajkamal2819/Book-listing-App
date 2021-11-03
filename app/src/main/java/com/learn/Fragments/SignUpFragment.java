@@ -19,8 +19,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.learn.Models.Users;
-import com.learn.booklistapp.MainActivity;
-import com.learn.booklistapp.R;
 import com.learn.booklistapp.UserPreferenceBook;
 import com.learn.booklistapp.databinding.FragmentSignUpBinding;
 

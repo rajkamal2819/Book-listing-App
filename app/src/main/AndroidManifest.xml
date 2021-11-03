@@ -16,20 +16,23 @@
         android:theme="@style/Theme.BookListApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MagazinesActivity"
+            android:theme="@style/mainPage"
+            android:exported="true" />
+        <activity
             android:name=".UserPreferenceBook"
-            android:theme="@style/loginTheme"
-            android:exported="true"/>
+            android:exported="true"
+            android:theme="@style/loginTheme" />
         <activity
             android:name=".MainActivity2"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/loginTheme" />
+            android:theme="@style/mainPage" />
         <activity
             android:name=".Authentication"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/loginTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,20 +45,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar.booksDetails" />
         <activity
-            android:name=".OtherBooks"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar.booksDetails" />
-        <activity
             android:name=".BooksListResponse"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar.booksDetails" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar.mainPage" />
     </application>
 
 </manifest>

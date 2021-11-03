@@ -18,8 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.learn.booklistapp.MainActivity;
-import com.learn.booklistapp.R;
+import com.learn.booklistapp.MainActivity2;
 import com.learn.booklistapp.databinding.FragmentLogInBinding;
 
 
@@ -56,7 +55,7 @@ public class LogInFragment extends Fragment {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             progressDialog.dismiss();
                             if (task.isSuccessful()) {
-                                Intent i = new Intent(getContext(), MainActivity.class);
+                                Intent i = new Intent(getContext(), MainActivity2.class);
                                 startActivity(i);
                             } else {
                                 Toast.makeText(getContext(), task.getException().toString(), Toast.LENGTH_SHORT).show();

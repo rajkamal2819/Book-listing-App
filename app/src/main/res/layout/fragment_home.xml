@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.learn.Fragments.HomeFragment">
 
@@ -14,9 +15,9 @@
         android:layout_height="wrap_content" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,11 +30,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:padding="4dp"
                 android:layout_marginEnd="10dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:elevation="40dp"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -54,9 +55,9 @@
                     android:id="@+id/done"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_margin="10dp"
                     android:background="?selectableItemBackground"
-                    android:src="@drawable/ic_baseline_done_24"
-                    android:layout_margin="10dp"/>
+                    android:src="@drawable/ic_baseline_done_24" />
 
 
             </LinearLayout>
@@ -112,7 +113,7 @@
                         android:id="@+id/Magzines"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#FFFFF7"
+                        android:background="@color/white"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="16dp">
@@ -149,7 +150,7 @@
                         android:id="@+id/FreeBooks"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#FFFFF7"
+                        android:background="@color/white"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="16dp">
@@ -186,7 +187,7 @@
                         android:id="@+id/more_books"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#FFFFF7"
+                        android:background="@color/white"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="16dp">
@@ -223,7 +224,7 @@
                         android:id="@+id/android_dev"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#FFFFF7"
+                        android:background="@color/white"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="16dp">
@@ -278,15 +279,15 @@
                 android:layout_marginStart="177dp"
                 android:layout_marginEnd="206dp"
                 android:layout_marginBottom="1dp"
+                android:background="@drawable/edittext_rounded"
+                android:backgroundTint="@color/blue"
+                android:padding="8dp"
                 android:text="Tell us your experience"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:padding="8dp"
-                android:background="@drawable/edittext_rounded"
-                android:backgroundTint="@color/blue"
-                android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@id/recyclerView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

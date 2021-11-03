@@ -15,4 +15,7 @@
         <item name="android:colorPrimaryDark">@color/dark_grey</item>
     </style>
 
+    <style name="mainPage" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
 </resources>

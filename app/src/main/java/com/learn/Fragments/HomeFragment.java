@@ -1,6 +1,7 @@
 package com.learn.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.learn.Adapters.Slider2Adapter;
 import com.learn.Adapters.SliderAdapter;
 import com.learn.booklistapp.BooksInfo;
+import com.learn.booklistapp.MagazinesActivity;
 import com.learn.booklistapp.QueryUtilLoader;
 import com.learn.booklistapp.QueryUtils;
 import com.learn.booklistapp.R;
@@ -47,7 +49,7 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
 
     FragmentHomeBinding binding;
     boolean isJsonReady = false;
-    private String SAMPLE_Json_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=Litrature&maxResults=20";
+    private String SAMPLE_Json_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=Galaxy&maxResults=20";
     private static final int BOOK_LOADER_ID = 1;
 
     @Override
@@ -75,6 +77,13 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
                     Log.i("Response Link: ",JsonLink);
                    // binding.edittextInterests.setText("");
                     binding.edittextInterests.clearFocus();
+                }
+            });
+
+            binding.Magzines.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getContext(), MagazinesActivity.class));
                 }
             });
 
@@ -193,7 +202,7 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
         LinearLayoutManager horizontalManager2 = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL,
                 false);
-        Slider2Adapter sliderAdapter = new Slider2Adapter(booksInfo,binding.recyclerView,getContext());
+        Slider2Adapter sliderAdapter = new Slider2Adapter(booksInfo,binding.recyclerView,getContext(),R.layout.slider2_container,1);
         binding.recyclerView.setAdapter(sliderAdapter);
         binding.recyclerView.setLayoutManager(horizontalManager2);
 

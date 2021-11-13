@@ -3,31 +3,15 @@ package com.learn.booklistapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationBarView;
-import com.learn.Adapters.SliderAdapter;
 import com.learn.Fragments.CategoriesFragment;
 import com.learn.Fragments.HomeFragment;
 import com.learn.Fragments.ProfileFragment;
 import com.learn.booklistapp.databinding.ActivityMain2Binding;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity2 extends AppCompatActivity {
 

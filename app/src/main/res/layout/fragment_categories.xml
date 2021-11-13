@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
-    tools:context=".MainActivity">
+    android:background="@color/light_grey"
+    tools:context="com.learn.Fragments.CategoriesFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:background="#FFFFF7"
+                    android:background="@color/light_yellow"
                     android:gravity="center"
                     android:padding="16dp">
 
@@ -72,7 +72,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:background="#FFFFF7"
+                    android:background="@color/light_yellow"
                     android:gravity="center"
                     android:padding="16dp">
 
@@ -110,7 +110,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:background="#FFFFF7"
+                    android:background="@color/light_yellow"
                     android:padding="16dp">
 
                     <ImageView
@@ -147,7 +147,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:background="#FFFFF7"
+                    android:background="@color/light_yellow"
                     android:padding="16dp">
 
                     <ImageView
@@ -184,7 +184,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:background="#FFFFF7"
+                    android:background="@color/light_yellow"
                     android:padding="16dp">
 
                     <ImageView
@@ -221,7 +221,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:background="#FFFFF7"
+                    android:background="@color/light_yellow"
                     android:padding="16dp">
 
                     <ImageView
@@ -257,7 +257,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:background="#FFFFF7"
+                    android:background="@color/light_yellow"
                     android:gravity="center"
                     android:padding="16dp">
 
@@ -295,7 +295,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:background="#FFFFF7"
+                    android:background="@color/light_yellow"
                     android:padding="16dp">
 
                     <ImageView
@@ -332,7 +332,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:background="#FFFFF7"
+                    android:background="@color/light_yellow"
                     android:padding="16dp">
 
                     <ImageView
@@ -369,7 +369,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:background="#FFFFF7"
+                    android:background="@color/light_yellow"
                     android:padding="16dp">
 
                     <ImageView

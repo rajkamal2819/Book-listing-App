@@ -20,32 +20,20 @@
             android:theme="@style/mainPage"
             android:exported="true" />
         <activity
-            android:name=".UserPreferenceBook"
-            android:exported="true"
-            android:theme="@style/loginTheme" />
-        <activity
             android:name=".MainActivity2"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/mainPage" />
-        <activity
-            android:name=".Authentication"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/loginTheme">
+            android:theme="@style/mainPage">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".BooksDetails"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar.booksDetails" />
-        <activity
-            android:name=".BooksListResponse"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar.booksDetails" />

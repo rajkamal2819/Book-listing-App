@@ -85,11 +85,16 @@ public class Slider2Adapter extends RecyclerView.Adapter<Slider2Adapter.Slider2V
         private TextView tittle;
         private TextView author;
 
+        private ImageView imageViewSlider1;
+
         private ImageView magazineImage;
         private TextView magazineText;
 
         public Slider2ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            imageViewSlider1 = itemView.findViewById(R.id.book_image_slider1);
+
             imageView = itemView.findViewById(R.id.book_image_slider2);
             tittle = itemView.findViewById(R.id.bookName_slider2);
 
@@ -126,8 +131,22 @@ public class Slider2Adapter extends RecyclerView.Adapter<Slider2Adapter.Slider2V
                 magazineText.setText(sliderItem.getBookTitle());
             }
 
+            else if(uniqueL == 3){
+                if (sliderItem.getThumbnailLink() != null) {
+                    try {
+                        Glide.with(context)
+                                .load(new URL(sliderItem.getThumbnailLink()))
+                                .into(imageViewSlider1);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Glide.with(imageViewSlider1.getContext()).load(R.drawable.books_placeholder).into(imageViewSlider1);
+                }
+            }
+            }
+
 
         }
 
     }
-}

@@ -31,7 +31,7 @@ public class MagazinesActivity extends AppCompatActivity {
     private ArrayList<BooksInfo> booksList;
     private TextView mEmptyStateTextView;
     private ProgressBar progressBar;
-    private ListAdapter mAdapter;
+   // private ListAdapter mAdapter;
     // int counterItem = 20;
     private int indexCounter = 0;
     boolean isExecuted = false;
@@ -52,7 +52,7 @@ public class MagazinesActivity extends AppCompatActivity {
 
         Log.e(Log_tag, "Index Counter = " + indexCounter);
 
-        binding.searchButton.setOnClickListener(new View.OnClickListener() {
+        binding.search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -87,12 +87,12 @@ public class MagazinesActivity extends AppCompatActivity {
         });
 
 
-        binding.nextItemsButton.setOnClickListener(new View.OnClickListener() {
+/*        binding.nextItemsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isExecuted) {
                     indexCounter += 21;
-                    /*SAMPLE_Json_RESPONSE = "" +
+                    *//*SAMPLE_Json_RESPONSE = "" +
                             "https://www.googleapis.com/books/v1/volumes?q=&maxResults=20";
                     String searchText = "";
                     searchText = binding.searchEdittext.getText().toString();
@@ -100,7 +100,7 @@ public class MagazinesActivity extends AppCompatActivity {
                     StringBuilder str = new StringBuilder(SAMPLE_Json_RESPONSE);
                     str.insert(46, searchText);
 
-                    SAMPLE_Json_RESPONSE = str.toString();*/
+                    SAMPLE_Json_RESPONSE = str.toString();*//*
 
                     String startJson = "https://www.googleapis.com/books/v1/volumes?q=";
                     String endJson = "&maxResults=20&printType=magazines";
@@ -121,7 +121,7 @@ public class MagazinesActivity extends AppCompatActivity {
                 }
 
             }
-        });
+        }); */
 
         mEmptyStateTextView = binding.emptyNoBook;
 

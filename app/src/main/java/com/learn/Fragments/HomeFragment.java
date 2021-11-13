@@ -1,19 +1,11 @@
 package com.learn.Fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,14 +15,14 @@ import android.view.ViewGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.learn.Adapters.Slider2Adapter;
-import com.learn.Adapters.SliderAdapter;
 import com.learn.booklistapp.BooksInfo;
 import com.learn.booklistapp.MagazinesActivity;
-import com.learn.booklistapp.QueryUtilLoader;
 import com.learn.booklistapp.QueryUtils;
 import com.learn.booklistapp.R;
 import com.learn.booklistapp.databinding.FragmentHomeBinding;
 
+import java.lang.reflect.Array;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +41,10 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
 
     FragmentHomeBinding binding;
     boolean isJsonReady = false;
-    private String SAMPLE_Json_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=Galaxy&maxResults=20";
+    private String SAMPLE_Json_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=Stories&maxResults=20";
+    private String SAMPLE_Json_RESPONSE_Newest = "https://www.googleapis.com/books/v1/volumes?q=Stories&maxResults=20&orderBy=newest";
+    private String SAMPLE_Json_RESPONSE_EBooks = "https://www.googleapis.com/books/v1/volumes?q=Stories&maxResults=20&filter=free-ebooks";
+    private String SAMPLE_Json_RESPONSE_Magazines = "https://www.googleapis.com/books/v1/volumes?q=Stories&maxResults=20&printType=magazines";
     private static final int BOOK_LOADER_ID = 1;
 
     @Override
@@ -58,35 +53,71 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
         binding = FragmentHomeBinding.inflate(getLayoutInflater());
 
             HomeAsyncTask task = new HomeAsyncTask();
-            task.execute();
+        try {
+            task.execute(new URL(SAMPLE_Json_RESPONSE),new URL(SAMPLE_Json_RESPONSE_Newest)
+            ,new URL(SAMPLE_Json_RESPONSE_EBooks),new URL(SAMPLE_Json_RESPONSE_Magazines));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
             binding.loadingSpinner.setVisibility(View.VISIBLE);
 
             binding.done.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     binding.loadingSpinner.setVisibility(View.VISIBLE);
-                    String interests = binding.edittextInterests.getText().toString();
+                    String interests = binding.edittextInterests.getText().toString().trim();
                     String JsonStart = "" + "https://www.googleapis.com/books/v1/volumes?q=";
                     String JsonEnd =       "&orderBy=newest&maxResults=20";
                     JsonStart += binding.edittextInterests.getText().toString();
                     String JsonLink = JsonStart + JsonEnd;
                     SAMPLE_Json_RESPONSE = JsonLink;
+
+                    String JsonStartNew = "" + "https://www.googleapis.com/books/v1/volumes?q=";
+                    String JsonEndNew =       "&orderBy=newest&maxResults=20&orderBy=newest";
+                    JsonStartNew += binding.edittextInterests.getText().toString().trim();
+                    String JsonLinkNew = JsonStartNew + JsonEndNew;
+                    SAMPLE_Json_RESPONSE_Newest = JsonLinkNew;
+
+                    String JsonStartEbooks = "" + "https://www.googleapis.com/books/v1/volumes?q=";
+                    String JsonEndEBooks =       "&orderBy=newest&maxResults=20&filter=free-ebooks";
+                    JsonStartEbooks += binding.edittextInterests.getText().toString().trim();
+                    String JsonLinkEBooks = JsonStartEbooks + JsonEndEBooks;
+                    SAMPLE_Json_RESPONSE_EBooks = JsonLinkEBooks;
+
+                    String JsonStartMagazines = "" + "https://www.googleapis.com/books/v1/volumes?q=";
+                    String JsonEndMagazines =       "&orderBy=newest&maxResults=20&printType=magazines";
+                    JsonStartMagazines += binding.edittextInterests.getText().toString().trim();
+                    String JsonLinkMag = JsonStartMagazines + JsonEndMagazines;
+                    SAMPLE_Json_RESPONSE_Magazines = JsonLinkMag;
+
+                    task.cancel(true);
+                  //  task2.cancel(true);
+
                     HomeAsyncTask asyncTask = new HomeAsyncTask();
-                    asyncTask.execute();
+                    try {
+                        asyncTask.execute(new URL(SAMPLE_Json_RESPONSE),new URL(SAMPLE_Json_RESPONSE_Newest)
+                        ,new URL(SAMPLE_Json_RESPONSE_EBooks),new URL(SAMPLE_Json_RESPONSE_Magazines));
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+
                     Log.i("Response Link: ",JsonLink);
                    // binding.edittextInterests.setText("");
                     binding.edittextInterests.clearFocus();
                 }
             });
 
-            binding.Magzines.setOnClickListener(new View.OnClickListener() {
+            /*binding.Magzines.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    *//*task.cancel(true);
+                    task2.cancel(true);*//*
                     startActivity(new Intent(getContext(), MagazinesActivity.class));
                 }
             });
-
+*/
        /* LoaderManager loaderManager = getLoaderManager();
         loaderManager.initLoader(BOOK_LOADER_ID, null, this);
 
@@ -115,23 +146,30 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
         return binding.getRoot();
     }
 
-    private class HomeAsyncTask extends AsyncTask<URL, Void, ArrayList<BooksInfo>> {
+    private class HomeAsyncTask extends AsyncTask<URL, Void, ArrayList<ArrayList<BooksInfo>>> {
         @Override
-        protected ArrayList<BooksInfo> doInBackground(URL... urls) {
+        protected ArrayList<ArrayList<BooksInfo>> doInBackground(URL... urls) {
 
-            ArrayList<BooksInfo> event = QueryUtils.fetchEarthquakeData(SAMPLE_Json_RESPONSE);   //also we can use  urls[0]
+          //  ArrayList<BooksInfo> event = QueryUtils.fetchEarthquakeData(SAMPLE_Json_RESPONSE);   //also we can use  urls[0]
+
+            ArrayList<ArrayList<BooksInfo>> events = new ArrayList<>();
+            for (int i = 0;i<urls.length;i++){
+               ArrayList<BooksInfo> event = QueryUtils.fetchEarthquakeData(urls[i].toString());
+               events.add(event);
+            }
+
             Log.d("HOme Fragment Utils",SAMPLE_Json_RESPONSE);
-            return event;
+            return events;
         }
 
         @Override
-        protected void onPostExecute(ArrayList<BooksInfo> event) {
+        protected void onPostExecute(ArrayList<ArrayList<BooksInfo>> events) {
 
             // progressBar.setVisibility(View.GONE);
 
             binding.loadingSpinner.setVisibility(View.GONE);
 
-            if (event == null) {
+            if (events == null) {
                 Log.e("HOme Fragment Event","NULL Event");
                 return;
             }
@@ -140,12 +178,32 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
 
             //  mEmptyStateTextView.setText("No Books Found");
             //  updateUi(event);
-            fetchImages(event);
 
-            fetchSlider2Info(event);
+            fetchSlider2Info(events.get(0));
+            fetchImages(events.get(1));
+            fetchEbooks(events.get(2));
+            fetchMagazines(events.get(3));
 
         }
 
+    }
+
+    public void fetchEbooks(ArrayList<BooksInfo> infos){
+        LinearLayoutManager horizontalManager2 = new LinearLayoutManager(getContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false);
+        Slider2Adapter sliderAdapter = new Slider2Adapter(infos,binding.recyclerViewEBooks,getContext(),R.layout.slider2_container,1);
+        binding.recyclerViewEBooks.setAdapter(sliderAdapter);
+        binding.recyclerViewEBooks.setLayoutManager(horizontalManager2);
+    }
+
+    public void fetchMagazines(ArrayList<BooksInfo> infos){
+        LinearLayoutManager horizontalManager2 = new LinearLayoutManager(getContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false);
+        Slider2Adapter sliderAdapter = new Slider2Adapter(infos,binding.recyclerViewMagazinesHOme,getContext(),R.layout.slider2_container,1);
+        binding.recyclerViewMagazinesHOme.setAdapter(sliderAdapter);
+        binding.recyclerViewMagazinesHOme.setLayoutManager(horizontalManager2);
     }
 
     public void fetchImages(List<BooksInfo> infos){
@@ -153,47 +211,9 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
         LinearLayoutManager horizontalManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL,
                 false);
-        SliderAdapter adapter = new SliderAdapter(infos,binding.recyclerView2,getContext());
+        Slider2Adapter adapter = new Slider2Adapter(infos,binding.recyclerView2,getContext(),R.layout.slider_item_container,3);
         binding.recyclerView2.setAdapter(adapter);
         binding.recyclerView2.setLayoutManager(horizontalManager);
-
-        /*binding.viewpager2.setClipToPadding(false);
-        binding.viewpager2.setClipChildren(false);
-        binding.viewpager2.setOffscreenPageLimit(3);
-        binding.viewpager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);*/
-
-       /*
-        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
-            @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r = 1 - Math.abs(position);
-                page.setScaleY(0.1f+r+0.1f);
-            }
-        });
-
-        binding.viewpager2.setPageTransformer(compositePageTransformer);
-         */
-
-        /*float pageMargin = getResources().getDimensionPixelOffset(R.dimen.pageMargin);
-        float pageOffset = getResources().getDimensionPixelOffset(R.dimen.offset);
-
-        binding.recyclerView2.setPageTransformer((page, position) -> {
-            float myOffset = position * -(2 * pageOffset + pageMargin);
-            if (position < -1) {
-                page.setTranslationX(-myOffset);
-            } else if (position <= 1) {
-                float scaleFactor = Math.max(0.7f, 1 - Math.abs(position - 0.14285715f));
-                page.setTranslationX(myOffset);
-                page.setScaleY(scaleFactor);
-                page.setAlpha(scaleFactor);
-            } else {
-                page.setAlpha(0);
-                page.setTranslationX(myOffset);
-            }
-        });
-         */
 
     }
 

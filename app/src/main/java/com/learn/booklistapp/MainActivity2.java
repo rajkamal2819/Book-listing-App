@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationBarView;
 import com.learn.Fragments.CategoriesFragment;
 import com.learn.Fragments.HomeFragment;
-import com.learn.Fragments.ProfileFragment;
+import com.learn.Fragments.MagazinesFragment;
 import com.learn.booklistapp.databinding.ActivityMain2Binding;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -52,8 +52,8 @@ public class MainActivity2 extends AppCompatActivity {
                         transaction.replace(R.id.main_content,new CategoriesFragment());
                         break;
 
-                    case R.id.profile:
-                        transaction.replace(R.id.main_content,new ProfileFragment());
+                    case R.id.magazines_menu:
+                        transaction.replace(R.id.main_content,new MagazinesFragment());
                         break;
 
                 }

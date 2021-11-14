@@ -1,49 +1,53 @@
-package com.learn.booklistapp;
+package com.learn.Fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.learn.Adapters.Slider2Adapter;
-import com.learn.booklistapp.databinding.ActivityMagazinesBinding;
+import com.learn.Adapters.SliderAdapter;
+import com.learn.Models.BooksInfo;
+import com.learn.booklistapp.QueryUtils;
+import com.learn.booklistapp.R;
+import com.learn.booklistapp.databinding.FragmentMagzinesBinding;
 
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MagazinesActivity extends AppCompatActivity {
+
+public class MagazinesFragment extends Fragment {
 
 
-    ActivityMagazinesBinding binding;
+    public MagazinesFragment() {
+        // Required empty public constructor
+    }
+
+    FragmentMagzinesBinding binding;
+
     private String SAMPLE_Json_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=&maxResults=20&printType=magazines";
-    private static String Log_tag = MagazinesActivity.class.getSimpleName();
+    private static String Log_tag = MagazinesFragment.class.getSimpleName();
 
     private ArrayList<BooksInfo> booksList;
     private TextView mEmptyStateTextView;
     private ProgressBar progressBar;
-   // private ListAdapter mAdapter;
+    // private ListAdapter mAdapter;
     // int counterItem = 20;
     private int indexCounter = 0;
     boolean isExecuted = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityMagazinesBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentMagzinesBinding.inflate(getLayoutInflater());
 
-
-        //length till equal to char is 46
         Log.d(Log_tag, SAMPLE_Json_RESPONSE);
         SAMPLE_Json_RESPONSE = "https://www.googleapis.com/books/v1/volumes?q=&maxResults=20&printType=magazines";
         SAMPLE_Json_RESPONSE += "&startIndex=" + indexCounter;
@@ -125,14 +129,15 @@ public class MagazinesActivity extends AppCompatActivity {
 
         mEmptyStateTextView = binding.emptyNoBook;
 
+        return binding.getRoot();
 
     }
 
     protected void updateUi(ArrayList<BooksInfo> booksInfos) {
 
-        Slider2Adapter sliderAdapter = new Slider2Adapter(booksInfos,binding.recyclerView,getApplicationContext(),R.layout.magzine_item,2);
+        SliderAdapter sliderAdapter = new SliderAdapter(booksInfos, binding.recyclerView, getContext(), R.layout.magzine_item, 2);
         binding.recyclerView.setAdapter(sliderAdapter);
-        binding.recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
 
     }

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey"
-    tools:context=".MagazinesActivity">
+    android:background="@color/white"
+    tools:context="com.learn.Fragments.MagazinesFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/search_edittext"
-            android:background="@color/light_grey">
+            android:background="@color/white">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"

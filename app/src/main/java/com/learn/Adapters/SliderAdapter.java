@@ -2,8 +2,6 @@ package com.learn.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,19 +10,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.learn.booklistapp.BooksDetails;
-import com.learn.booklistapp.BooksInfo;
+import com.learn.Models.BooksInfo;
 import com.learn.booklistapp.R;
-import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-public class Slider2Adapter extends RecyclerView.Adapter<Slider2Adapter.Slider2ViewHolder> {
+public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.Slider2ViewHolder> {
 
     private List<BooksInfo> list;
     private RecyclerView recyclerView;
@@ -32,7 +28,7 @@ public class Slider2Adapter extends RecyclerView.Adapter<Slider2Adapter.Slider2V
     private int layoutId;
     private int uniqueL;
 
-    public Slider2Adapter(List<BooksInfo> list, RecyclerView recyclerView, Context context,int layoutId,int uniqueL) {
+    public SliderAdapter(List<BooksInfo> list, RecyclerView recyclerView, Context context, int layoutId, int uniqueL) {
         this.list = list;
         this.recyclerView = recyclerView;
         this.context = context;
@@ -43,7 +39,7 @@ public class Slider2Adapter extends RecyclerView.Adapter<Slider2Adapter.Slider2V
 
     @NonNull
     @Override
-    public Slider2Adapter.Slider2ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SliderAdapter.Slider2ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new Slider2ViewHolder(LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false));
     }
 

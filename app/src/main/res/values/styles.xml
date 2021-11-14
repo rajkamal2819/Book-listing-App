@@ -16,8 +16,7 @@
     </style>
 
     <style name="mainPage" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:colorPrimaryDark">@color/light_grey</item>
-        <item name="android:navigationBarColor">@color/grey</item>
+        <item name="android:navigationBarColor">@color/white</item>
     </style>
 
 </resources>

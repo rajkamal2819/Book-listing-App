@@ -13,9 +13,9 @@
         android:id="@+id/categories"/>
 
     <item
-        android:title="Profile"
+        android:title="Magazines"
         android:color="@color/dark_grey"
-        android:icon="@drawable/profile_icon"
-        android:id="@+id/profile"/>
+        android:icon="@drawable/magazine_icon"
+        android:id="@+id/magazines_menu"/>
 
 </menu>

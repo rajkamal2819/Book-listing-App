@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey"
+    android:background="@color/white"
     tools:context="com.learn.Fragments.HomeFragment">
 
     <ScrollView
@@ -35,13 +35,10 @@
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/white"
                     android:drawableLeft="@drawable/ic_baseline_search_24"
                     android:drawablePadding="5dp"
-                    android:drawableTint="@color/white"
                     android:hint="Enter Your Interests"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColor="@color/dark_grey"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +62,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="Latest Books"
-                android:textColor="@color/white"
+                android:textColor="@color/dark_grey"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
@@ -87,7 +84,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="Related Topics"
-                android:textColor="@color/white"
+                android:textColor="@color/dark_grey"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recyclerView2" />
@@ -109,7 +106,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="Free - E Books"
-                android:textColor="@color/white"
+                android:textColor="@color/dark_grey"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recyclerView" />
@@ -131,7 +128,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="Magazines"
-                android:textColor="@color/white"
+                android:textColor="@color/dark_grey"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recyclerViewEBooks" />
@@ -155,7 +152,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:indeterminateTint="@color/white"
         android:indeterminateTintMode="src_atop"
         android:visibility="visible" />
 

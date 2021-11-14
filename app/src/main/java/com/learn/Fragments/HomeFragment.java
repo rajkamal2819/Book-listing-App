@@ -1,6 +1,5 @@
 package com.learn.Fragments;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -14,14 +13,12 @@ import android.view.ViewGroup;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.learn.Adapters.Slider2Adapter;
-import com.learn.booklistapp.BooksInfo;
-import com.learn.booklistapp.MagazinesActivity;
+import com.learn.Adapters.SliderAdapter;
+import com.learn.Models.BooksInfo;
 import com.learn.booklistapp.QueryUtils;
 import com.learn.booklistapp.R;
 import com.learn.booklistapp.databinding.FragmentHomeBinding;
 
-import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -192,7 +189,7 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
         LinearLayoutManager horizontalManager2 = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL,
                 false);
-        Slider2Adapter sliderAdapter = new Slider2Adapter(infos,binding.recyclerViewEBooks,getContext(),R.layout.slider2_container,1);
+        SliderAdapter sliderAdapter = new SliderAdapter(infos,binding.recyclerViewEBooks,getContext(),R.layout.slider2_container,1);
         binding.recyclerViewEBooks.setAdapter(sliderAdapter);
         binding.recyclerViewEBooks.setLayoutManager(horizontalManager2);
     }
@@ -201,7 +198,7 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
         LinearLayoutManager horizontalManager2 = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL,
                 false);
-        Slider2Adapter sliderAdapter = new Slider2Adapter(infos,binding.recyclerViewMagazinesHOme,getContext(),R.layout.slider2_container,1);
+        SliderAdapter sliderAdapter = new SliderAdapter(infos,binding.recyclerViewMagazinesHOme,getContext(),R.layout.slider2_container,1);
         binding.recyclerViewMagazinesHOme.setAdapter(sliderAdapter);
         binding.recyclerViewMagazinesHOme.setLayoutManager(horizontalManager2);
     }
@@ -211,7 +208,7 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
         LinearLayoutManager horizontalManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL,
                 false);
-        Slider2Adapter adapter = new Slider2Adapter(infos,binding.recyclerView2,getContext(),R.layout.slider_item_container,3);
+        SliderAdapter adapter = new SliderAdapter(infos,binding.recyclerView2,getContext(),R.layout.slider_item_container,3);
         binding.recyclerView2.setAdapter(adapter);
         binding.recyclerView2.setLayoutManager(horizontalManager);
 
@@ -222,7 +219,7 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
         LinearLayoutManager horizontalManager2 = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL,
                 false);
-        Slider2Adapter sliderAdapter = new Slider2Adapter(booksInfo,binding.recyclerView,getContext(),R.layout.slider2_container,1);
+        SliderAdapter sliderAdapter = new SliderAdapter(booksInfo,binding.recyclerView,getContext(),R.layout.slider2_container,1);
         binding.recyclerView.setAdapter(sliderAdapter);
         binding.recyclerView.setLayoutManager(horizontalManager2);
 

@@ -1,4 +1,4 @@
-package com.learn.booklistapp;
+package com.learn.Models;
 
 import java.util.ArrayList;
 

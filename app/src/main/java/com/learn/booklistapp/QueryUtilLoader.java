@@ -6,6 +6,8 @@ import android.util.Log;
 
 import androidx.loader.content.AsyncTaskLoader;
 
+import com.learn.Models.BooksInfo;
+
 import java.util.ArrayList;
 
 public class QueryUtilLoader extends AsyncTaskLoader<ArrayList<BooksInfo>> {

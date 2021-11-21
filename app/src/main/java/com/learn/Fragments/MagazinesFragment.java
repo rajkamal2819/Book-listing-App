@@ -43,6 +43,10 @@ public class MagazinesFragment extends Fragment {
     private int indexCounter = 0;
     boolean isExecuted = false;
 
+    int pageSize = 20;
+    int page = 1;
+    int scrollPosition = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,17 +63,6 @@ public class MagazinesFragment extends Fragment {
         binding.search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                /*SAMPLE_Json_RESPONSE = "" +
-                        "https://www.googleapis.com/books/v1/volumes?q=&maxResults=20&printType=magazines";
-                String searchText = "";
-                searchText = binding.searchEdittext.getText().toString();
-
-                StringBuilder str = new StringBuilder(SAMPLE_Json_RESPONSE);
-                str.insert(46, searchText);
-
-                SAMPLE_Json_RESPONSE = str.toString();*/
 
                 String startJson = "https://www.googleapis.com/books/v1/volumes?q=";
                 String endJson = "&maxResults=20&printType=magazines";
@@ -90,43 +83,6 @@ public class MagazinesFragment extends Fragment {
             }
         });
 
-
-/*        binding.nextItemsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isExecuted) {
-                    indexCounter += 21;
-                    *//*SAMPLE_Json_RESPONSE = "" +
-                            "https://www.googleapis.com/books/v1/volumes?q=&maxResults=20";
-                    String searchText = "";
-                    searchText = binding.searchEdittext.getText().toString();
-
-                    StringBuilder str = new StringBuilder(SAMPLE_Json_RESPONSE);
-                    str.insert(46, searchText);
-
-                    SAMPLE_Json_RESPONSE = str.toString();*//*
-
-                    String startJson = "https://www.googleapis.com/books/v1/volumes?q=";
-                    String endJson = "&maxResults=20&printType=magazines";
-                    String searchText = "";
-                    searchText = binding.searchEdittext.getText().toString();
-                    startJson += searchText;
-
-                    SAMPLE_Json_RESPONSE = startJson + endJson;
-
-                    SAMPLE_Json_RESPONSE += "&startIndex=" + indexCounter;
-
-                    Log.e(Log_tag, "Index Counter = " + indexCounter);
-
-                    UtilsAsyncTask task = new UtilsAsyncTask();
-                    task.execute();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Please First Type and Search Some Books", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        }); */
-
         mEmptyStateTextView = binding.emptyNoBook;
 
         return binding.getRoot();
@@ -134,6 +90,8 @@ public class MagazinesFragment extends Fragment {
     }
 
     protected void updateUi(ArrayList<BooksInfo> booksInfos) {
+
+        booksList = booksInfos;
 
         SliderAdapter sliderAdapter = new SliderAdapter(booksInfos, binding.recyclerView, getContext(), R.layout.magzine_item, 2);
         binding.recyclerView.setAdapter(sliderAdapter);
@@ -160,8 +118,24 @@ public class MagazinesFragment extends Fragment {
             }
 
             updateUi(event);
-
         }
-
     }
+
+    private void incrementPage(){
+        page = page + 1;
+    }
+
+    private void onScrollChangePosition(int position){
+        scrollPosition = position;
+    }
+
+    private  void appendNewBooks(ArrayList<BooksInfo> booksInfos){
+        ArrayList<BooksInfo> current = booksInfos;
+        current.addAll(booksInfos);
+        booksList = current;
+        updateUi(booksList);
+    }
+
+
+
 }

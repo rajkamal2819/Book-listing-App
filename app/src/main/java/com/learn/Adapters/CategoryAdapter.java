@@ -73,7 +73,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.catego
                         category = "Others"; break;
                 }
 
-                String httpLink = "https://www.udemy.com/api-2.0/courses/?page=1&page_size=50&search=";
+                String httpLink = "https://www.googleapis.com/books/v1/volumes?q=";
                 httpLink += category;
 
                 i.putExtra("Category", httpLink);

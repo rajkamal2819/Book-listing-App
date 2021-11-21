@@ -60,6 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 android:fontFamily="sans-serif-medium"
                 android:text="Latest Books"
                 android:textColor="@color/dark_grey"
@@ -84,6 +85,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="Related Topics"
+                android:visibility="gone"
                 android:textColor="@color/dark_grey"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -106,6 +108,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="Free - E Books"
+                android:visibility="gone"
                 android:textColor="@color/dark_grey"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -130,6 +133,7 @@
                 android:text="Magazines"
                 android:textColor="@color/dark_grey"
                 android:textSize="20sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recyclerViewEBooks" />
 

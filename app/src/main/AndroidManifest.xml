@@ -16,10 +16,15 @@
         android:theme="@style/Theme.BookListApp"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".CategoriesResultActivity"
-            android:theme="@style/mainPage"
+            android:name=".InterestTopicsHome"
             android:screenOrientation="portrait"
+            android:theme="@style/mainPage"
             android:exported="true" />
+        <activity
+            android:name=".CategoriesResultActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/mainPage" />
         <activity
             android:name=".MainActivity2"
             android:exported="true"

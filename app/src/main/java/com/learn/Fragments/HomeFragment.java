@@ -1,5 +1,6 @@
 package com.learn.Fragments;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -8,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.learn.Adapters.SliderAdapter;
 import com.learn.Models.BooksInfo;
+import com.learn.booklistapp.InterestTopicsHome;
 import com.learn.booklistapp.QueryUtils;
 import com.learn.booklistapp.R;
 import com.learn.booklistapp.databinding.FragmentHomeBinding;
@@ -51,6 +52,8 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
     private String SAMPLE_Json_RESPONSE_EBooks = "https://www.googleapis.com/books/v1/volumes?q=Stories&maxResults=20&filter=free-ebooks";
     private String SAMPLE_Json_RESPONSE_Magazines = "https://www.googleapis.com/books/v1/volumes?q=Stories&maxResults=20&printType=magazines";
     private static final int BOOK_LOADER_ID = 1;
+
+    boolean isEditTextActive = false;
 
     /*private final String SOME_VALUE_KEY = "someValueToSave";
     private int someStateValue;
@@ -93,6 +96,7 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
         binding.done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isEditTextActive = true;
 
                 binding.loadingSpinner.setVisibility(View.VISIBLE);
                 String interests = binding.edittextInterests.getText().toString().trim();
@@ -144,6 +148,55 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
             // only create fragment if they haven't been instantiated already
             homeFragment = new HomeFragment();
         }*/
+
+        binding.l2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), InterestTopicsHome.class);
+                i.putExtra("Link",SAMPLE_Json_RESPONSE_Newest);
+                i.putExtra("jsonStart","https://www.googleapis.com/books/v1/volumes?q=");
+                i.putExtra("search",binding.edittextInterests.getText().toString());
+                i.putExtra("jsonEnd","&maxResults=20&orderBy=newest&startIndex=");
+                i.putExtra("isSearched",isEditTextActive);
+                startActivity(i);
+            }
+        });
+
+        binding.l3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), InterestTopicsHome.class);
+                i.putExtra("jsonStart","https://www.googleapis.com/books/v1/volumes?q=");
+                i.putExtra("search",binding.edittextInterests.getText().toString());
+                i.putExtra("jsonEnd","&maxResults=20&startIndex=");
+                i.putExtra("isSearched",isEditTextActive);
+                startActivity(i);
+            }
+        });
+
+        binding.l4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), InterestTopicsHome.class);
+                i.putExtra("jsonStart","https://www.googleapis.com/books/v1/volumes?q=");
+                i.putExtra("search",binding.edittextInterests.getText().toString());
+                i.putExtra("jsonEnd","&maxResults=20&filter=free-ebooks&startIndex=");
+                i.putExtra("isSearched",isEditTextActive);
+                startActivity(i);
+            }
+        });
+
+        binding.l5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), InterestTopicsHome.class);
+                i.putExtra("jsonStart","https://www.googleapis.com/books/v1/volumes?q=");
+                i.putExtra("search",binding.edittextInterests.getText().toString());
+                i.putExtra("jsonEnd","&maxResults=20&printType=magazines&startIndex=");
+                i.putExtra("isSearched",isEditTextActive);
+                startActivity(i);
+            }
+        });
 
 
         return binding.getRoot();

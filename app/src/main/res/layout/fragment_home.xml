@@ -54,20 +54,36 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/latest_text"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/l2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:visibility="gone"
-                android:fontFamily="sans-serif-medium"
-                android:text="Latest Books"
-                android:textColor="@color/dark_grey"
-                android:textSize="20sp"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
+                app:layout_constraintTop_toBottomOf="@id/linearLayout2">
 
+                <TextView
+                    android:id="@+id/latest_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Latest Books"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="20sp"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/arrowright" />
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView2"
@@ -75,21 +91,38 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/latest_text" />
+                app:layout_constraintTop_toBottomOf="@+id/l2" />
 
-            <TextView
-                android:id="@+id/trending_topics"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/l3"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="Related Topics"
-                android:visibility="gone"
-                android:textColor="@color/dark_grey"
-                android:textSize="20sp"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recyclerView2" />
+                app:layout_constraintTop_toBottomOf="@id/recyclerView2">
+
+                <TextView
+                    android:id="@+id/trending_topics"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Related Topics"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="20sp"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/arrowright" />
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -98,21 +131,38 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/trending_topics" />
+                app:layout_constraintTop_toBottomOf="@id/l3" />
 
-            <TextView
-                android:id="@+id/eBooks"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/l4"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="Free - E Books"
-                android:visibility="gone"
-                android:textColor="@color/dark_grey"
-                android:textSize="20sp"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recyclerView" />
+                app:layout_constraintTop_toBottomOf="@id/recyclerView">
+
+                <TextView
+                    android:id="@+id/eBooks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Free - E Books"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="20sp"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/arrowright" />
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewEBooks"
@@ -121,21 +171,38 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/eBooks" />
+                app:layout_constraintTop_toBottomOf="@id/l4" />
 
-            <TextView
-                android:id="@+id/magazines"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/l5"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="Magazines"
-                android:textColor="@color/dark_grey"
-                android:textSize="20sp"
-                android:visibility="gone"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recyclerViewEBooks" />
+                app:layout_constraintTop_toBottomOf="@id/recyclerViewEBooks">
+
+                <TextView
+                    android:id="@+id/magazines"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Magazines"
+                    android:layout_weight="1"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="20sp"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/arrowright" />
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewMagazinesHOme"
@@ -144,7 +211,7 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/magazines" />
+                app:layout_constraintTop_toBottomOf="@id/l5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -59,6 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearLayout2">
 
@@ -79,6 +80,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginTop="10dp"
+                    android:padding="2dp"
                     android:layout_marginRight="25dp"
                     android:layout_marginBottom="10dp"
                     android:src="@drawable/arrowright" />
@@ -97,6 +99,7 @@
                 android:id="@+id/l3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recyclerView2">
@@ -119,6 +122,7 @@
                     android:layout_height="25dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="25dp"
+                    android:padding="2dp"
                     android:layout_marginBottom="10dp"
                     android:src="@drawable/arrowright" />
 
@@ -138,6 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recyclerView">
 
@@ -159,6 +164,7 @@
                     android:layout_height="25dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="25dp"
+                    android:padding="2dp"
                     android:layout_marginBottom="10dp"
                     android:src="@drawable/arrowright" />
 
@@ -178,6 +184,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recyclerViewEBooks">
 
@@ -187,9 +194,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
                     android:text="Magazines"
-                    android:layout_weight="1"
                     android:textColor="@color/dark_grey"
                     android:textSize="20sp"
                     android:visibility="visible" />
@@ -200,6 +207,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="25dp"
                     android:layout_marginBottom="10dp"
+                    android:padding="2dp"
                     android:src="@drawable/arrowright" />
 
             </LinearLayout>
@@ -225,5 +233,14 @@
         android:layout_centerInParent="true"
         android:indeterminateTintMode="src_atop"
         android:visibility="visible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:id="@+id/mEmptyText"
+        android:text="NO Internet Connection"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

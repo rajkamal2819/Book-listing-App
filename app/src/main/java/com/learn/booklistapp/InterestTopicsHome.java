@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.learn.Adapters.SliderAdapter;
 import com.learn.Fragments.PaidBookCategory;
@@ -36,6 +37,8 @@ public class InterestTopicsHome extends AppCompatActivity {
         String jsonEnd = getIntent().getStringExtra("jsonEnd");
         boolean isSearched = getIntent().getBooleanExtra("isSearched", false);
 
+        bookList = new ArrayList<>();
+
         if (isSearched)
             SAMPLE_RESPONSE_LINK = jsonStart + search + jsonEnd;
         else
@@ -48,6 +51,13 @@ public class InterestTopicsHome extends AppCompatActivity {
 
         UtilsAsyncTask task = new UtilsAsyncTask();
         task.execute();
+
+        binding.backArrowBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         binding.nestedScrollViewInterests.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
@@ -120,6 +130,7 @@ public class InterestTopicsHome extends AppCompatActivity {
 
             if (event == null) {
                 //  mEmptyStateTextView.setText("No Books Found");
+                Toast.makeText(getApplicationContext(),"No More Books",Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -133,8 +144,5 @@ public class InterestTopicsHome extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         bookList.clear();
-
-        //  Log.i(LOG_TAG,"On Destroy the Book list is cleared");
-
     }
 }

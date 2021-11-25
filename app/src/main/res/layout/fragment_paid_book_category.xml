@@ -71,6 +71,16 @@
             android:indeterminateTintMode="src_atop"
             android:visibility="gone" />
 
+        <TextView
+            android:id="@+id/empty_no_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="NO Internet Connection"
+            android:visibility="gone"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/black" />
+
     </RelativeLayout>
 
 </androidx.core.widget.NestedScrollView>

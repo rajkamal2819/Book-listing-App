@@ -11,6 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ProgressBar
+            android:id="@+id/loading_spinner"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:layout_centerInParent="true"
+            android:visibility="visible" />
+
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
@@ -52,15 +61,6 @@
             android:layout_below="@id/linearLayout4" />
 
         <ProgressBar
-            android:id="@+id/loading_spinner"
-            style="@style/Widget.AppCompat.ProgressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:indeterminateTintMode="src_atop"
-            android:visibility="visible" />
-
-        <ProgressBar
             android:id="@+id/progressBarMoreResp"
             style="@style/Widget.AppCompat.ProgressBar"
             android:layout_width="wrap_content"
@@ -69,6 +69,16 @@
             android:layout_centerHorizontal="true"
             android:indeterminateTintMode="src_atop"
             android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/empty_no_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="NO Internet Connection"
+            android:visibility="gone"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/black" />
 
     </RelativeLayout>
 

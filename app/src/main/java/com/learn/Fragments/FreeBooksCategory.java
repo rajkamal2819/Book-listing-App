@@ -1,5 +1,8 @@
 package com.learn.Fragments;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -7,10 +10,12 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.learn.Adapters.SliderAdapter;
 import com.learn.Models.BooksInfo;
@@ -37,6 +42,7 @@ public class FreeBooksCategory extends Fragment {
     int limit = 0;
     private static String LOG_TAG = PaidBookCategory.class.getSimpleName();
     private String tempLink = "";
+    private ConnectivityManager cm;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +54,7 @@ public class FreeBooksCategory extends Fragment {
         tempLink = Json_Link;
         Json_Link += limit;
         bookList = new ArrayList<>();
+        cm = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         UtilsAsyncTask task = new UtilsAsyncTask();
         task.execute();
@@ -56,17 +63,24 @@ public class FreeBooksCategory extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String searchText = binding.searchEdittext.getText().toString().trim();
-                String startL = "https://www.googleapis.com/books/v1/volumes?q=";
-                startL += searchText;
-                String end = "&filter=paid-ebooks&maxResults=20&startIndex=";
-                tempLink = startL + end;
-                limit = 0;
-                end += limit;
-                Json_Link = startL + end;
+                if(TextUtils.isEmpty(binding.searchEdittext.getText().toString())){
+                    Toast.makeText(getContext(),"Type something",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    binding.loadingSpinner.setVisibility(View.VISIBLE);
+                    String searchText = binding.searchEdittext.getText().toString().trim();
+                    String startL = "https://www.googleapis.com/books/v1/volumes?q=";
+                    startL += searchText;
+                    String end = "&filter=paid-ebooks&maxResults=20&startIndex=";
+                    tempLink = startL + end;
+                    limit = 0;
+                    end += limit;
+                    Json_Link = startL + end;
 
-                UtilsAsyncTask task1 = new UtilsAsyncTask();
-                task1.execute();
+                    UtilsAsyncTask task1 = new UtilsAsyncTask();
+                    task1.execute();
+
+                }
 
             }
         });
@@ -75,9 +89,6 @@ public class FreeBooksCategory extends Fragment {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 if(scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()){
-                    // binding.progressSpineer.setVisibility(View.VISIBLE);
-
-                    // https://www.udemy.com/api-2.0/courses/?page=1&search=
 
                     limit += 20;
                     Log.i(LOG_TAG,"LIMIT: "+limit);
@@ -102,6 +113,16 @@ public class FreeBooksCategory extends Fragment {
 
         bookList = booksInfos;
 
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        if(!isConnected){
+            binding.emptyNoBook.setVisibility(View.VISIBLE);
+        } else{
+            binding.emptyNoBook.setVisibility(View.GONE);
+        }
+
         SliderAdapter sliderAdapter = new SliderAdapter(booksInfos, binding.recyclerViewFree, getContext(), R.layout.magzine_item, 2);
         binding.recyclerViewFree.setAdapter(sliderAdapter);
         binding.recyclerViewFree.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -122,7 +143,7 @@ public class FreeBooksCategory extends Fragment {
              binding.loadingSpinner.setVisibility(View.GONE);
 
             if (event == null) {
-                //  mEmptyStateTextView.setText("No Books Found");
+                  binding.emptyNoBook.setText("No Books Found");
                 return;
             }
 
@@ -144,6 +165,7 @@ public class FreeBooksCategory extends Fragment {
             binding.progressBarMoreResp.setVisibility(View.GONE);
 
             if (event == null) {
+                Toast.makeText(getContext(),"No More Books",Toast.LENGTH_SHORT).show();
                 //  mEmptyStateTextView.setText("No Books Found");
                 return;
             }

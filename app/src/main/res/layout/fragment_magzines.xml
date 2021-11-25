@@ -69,8 +69,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:text="NO Internet Connection"
+                android:visibility="gone"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <ProgressBar
                 android:id="@+id/progress_spineer"
@@ -79,6 +81,25 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/progress_spineer2"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/searchMagazines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Search Magazines"
+                android:visibility="visible"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/black" />
 
         </RelativeLayout>
 

@@ -41,27 +41,34 @@
 
     </LinearLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/linearLayout2"
-        android:fillViewport="true">
-
         <RelativeLayout
             android:id="@+id/relativeLayoutList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/search_edittext"
+            android:layout_below="@id/linearLayout2"
             android:background="@color/white">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:divider="@null"
-                android:dividerHeight="0dp"
-                android:orientation="vertical" />
+                android:fillViewport="true">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:dividerHeight="0dp"
+                    android:orientation="vertical" />
+
+            </androidx.core.widget.NestedScrollView>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
             <!-- Empty view is only visible when the list has no items. -->
             <TextView
@@ -102,7 +109,5 @@
                 android:textColor="@color/black" />
 
         </RelativeLayout>
-
-    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

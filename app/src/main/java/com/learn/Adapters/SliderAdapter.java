@@ -18,6 +18,7 @@ import com.learn.booklistapp.R;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.Slider2ViewHolder> {

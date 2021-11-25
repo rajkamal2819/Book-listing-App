@@ -3,9 +3,14 @@ package com.learn.booklistapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -25,6 +30,8 @@ public class InterestTopicsHome extends AppCompatActivity {
     int limit = 0;
     ArrayList<BooksInfo> bookList;
     private String tempLink = "";
+    SliderAdapter mAdapter;
+    private ConnectivityManager cm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,7 @@ public class InterestTopicsHome extends AppCompatActivity {
         boolean isSearched = getIntent().getBooleanExtra("isSearched", false);
 
         bookList = new ArrayList<>();
+        cm = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if (isSearched)
             SAMPLE_RESPONSE_LINK = jsonStart + search + jsonEnd;
@@ -79,16 +87,56 @@ public class InterestTopicsHome extends AppCompatActivity {
             }
         });
 
+        binding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+              //  fetchTimelineAsync(0);
+
+                bookList.clear();
+                Toast.makeText(getApplicationContext(),"Loading...",Toast.LENGTH_LONG).show();
+                task.cancel(true);
+                SAMPLE_RESPONSE_LINK = tempLink;
+                limit = 0;
+                SAMPLE_RESPONSE_LINK += limit;
+                UtilsAsyncTask task1 = new UtilsAsyncTask();
+                task1.execute();
+                /*mAdapter.clear();
+                mAdapter.addAll(bookList);*/
+                binding.swipeContainer.setRefreshing(false);
+
+            }
+        });
+
+        binding.swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
     }
 
     protected void updateUi(ArrayList<BooksInfo> booksInfos) {
 
         bookList = booksInfos;
 
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        if(!isConnected){
+            binding.noResults.setVisibility(View.VISIBLE);
+        } else{
+            binding.noResults.setVisibility(View.GONE);
+        }
+
         SliderAdapter sliderAdapter = new SliderAdapter(booksInfos, binding.recyclerViewInterest, getApplicationContext(), R.layout.magzine_item, 2);
         binding.recyclerViewInterest.setAdapter(sliderAdapter);
         binding.recyclerViewInterest.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
 
+        mAdapter = sliderAdapter;
+       // sliderAdapter.notifyDataSetChanged();
 
     }
 
@@ -108,6 +156,7 @@ public class InterestTopicsHome extends AppCompatActivity {
 
             if (event == null) {
                 //  mEmptyStateTextView.setText("No Books Found");
+                binding.noResults.setText("No Books Found");
                 return;
             }
 
@@ -145,4 +194,5 @@ public class InterestTopicsHome extends AppCompatActivity {
         super.onDestroy();
         bookList.clear();
     }
+
 }

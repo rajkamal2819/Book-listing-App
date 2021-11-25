@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.learn.Adapters.SliderAdapter;
 import com.learn.Models.BooksInfo;
+import com.learn.booklistapp.InterestTopicsHome;
 import com.learn.booklistapp.QueryUtils;
 import com.learn.booklistapp.R;
 import com.learn.booklistapp.databinding.FragmentMagzinesBinding;
@@ -93,6 +95,9 @@ public class MagazinesFragment extends Fragment {
             }
         });
 
+        if(TextUtils.isEmpty(binding.searchEdittext.getText())){
+            binding.swipeContainer.setRefreshing(false);
+        }
         binding.nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
@@ -110,6 +115,26 @@ public class MagazinesFragment extends Fragment {
                     Log.i("MagzinesFragment",SAMPLE_Json_RESPONSE);
 
                 }
+            }
+        });
+
+        binding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                //  fetchTimelineAsync(0);
+
+                bookList.clear();
+                Toast.makeText(getContext(),"Loading...",Toast.LENGTH_LONG).show();
+                SAMPLE_Json_RESPONSE = tempLink;
+                limit = 0;
+                SAMPLE_Json_RESPONSE += limit;
+                UtilsAsyncTask task1 = new UtilsAsyncTask();
+                task1.execute();
+                binding.swipeContainer.setRefreshing(false);
+
             }
         });
 

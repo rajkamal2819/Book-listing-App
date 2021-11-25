@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -28,6 +29,7 @@ import com.learn.booklistapp.QueryUtils;
 import com.learn.booklistapp.R;
 import com.learn.booklistapp.databinding.FragmentHomeBinding;
 
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -66,17 +68,6 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
     private HomeFragment homeFragment;*/
 
     int counter = 0;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-       /* if(savedInstanceState != null){
-            onSaveInstanceState(savedInstanceState);
-
-        } */
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -153,13 +144,34 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
             }
         });
 
-       /* if (savedInstanceState != null) {
-            someStateValue = savedInstanceState.getInt(SOME_VALUE_KEY);
-            // Do something with value if needed
-        } else if (homeFragment == null) {
-            // only create fragment if they haven't been instantiated already
-            homeFragment = new HomeFragment();
-        }*/
+        binding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                listEbooks.clear();
+                listMagazines.clear();
+                listNormal.clear();
+                listNewest.clear();
+                Toast.makeText(getContext(),"Loading...",Toast.LENGTH_LONG).show();
+                task.cancel(true);
+
+                HomeAsyncTask task1 = new HomeAsyncTask();
+                try {
+                    task1.execute(new URL(SAMPLE_Json_RESPONSE), new URL(SAMPLE_Json_RESPONSE_Newest)
+                            , new URL(SAMPLE_Json_RESPONSE_EBooks), new URL(SAMPLE_Json_RESPONSE_Magazines));
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                binding.swipeContainer.setRefreshing(false);
+
+            }
+        });
+
+        binding.swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
 
         binding.l2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -289,6 +301,8 @@ public class HomeFragment extends Fragment /*implements LoaderManager.LoaderCall
             fetchImages(events.get(1));
             fetchEbooks(events.get(2));
             fetchMagazines(events.get(3));
+
+            events.clear();
 
         }
 

@@ -9,7 +9,9 @@ import android.os.Bundle;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.renderscript.Sampler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import com.learn.Adapters.SliderAdapter;
 import com.learn.Models.BooksInfo;
+import com.learn.booklistapp.InterestTopicsHome;
 import com.learn.booklistapp.QueryUtils;
 import com.learn.booklistapp.R;
 import com.learn.booklistapp.databinding.FragmentPaidBookCategoryBinding;
@@ -105,6 +108,32 @@ public class PaidBookCategory extends Fragment {
             }
         });
 
+        binding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                //  fetchTimelineAsync(0);
+
+                bookList.clear();
+                Toast.makeText(getContext(),"Loading...",Toast.LENGTH_LONG).show();
+
+                task.cancel(true);
+                Json_Link = tempLink;
+                limit = 0;
+                Json_Link += limit;
+                UtilsAsyncTask task1 = new UtilsAsyncTask();
+                task1.execute();
+                binding.swipeContainer.setRefreshing(false);
+
+            }
+        });
+
+        binding.swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         return binding.getRoot();
     }

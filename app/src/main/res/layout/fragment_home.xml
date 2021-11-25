@@ -6,6 +6,11 @@
     android:background="@color/white"
     tools:context="com.learn.Fragments.HomeFragment">
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipeContainer">
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -225,6 +230,8 @@
 
     </ScrollView>
 
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     <ProgressBar
         android:id="@+id/loading_spinner"
         style="@style/Widget.AppCompat.ProgressBar"
@@ -243,4 +250,5 @@
         android:text="NO Internet Connection"
         android:layout_centerInParent="true"/>
 
-</RelativeLayout>
+    </RelativeLayout>
+

@@ -73,6 +73,8 @@ public class MagazinesFragment extends Fragment {
                     Toast.makeText(getContext(),"Type something",Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    Toast.makeText(getContext(),"Loading...",Toast.LENGTH_SHORT).show();
+
                     binding.progressSpineer.setVisibility(View.VISIBLE);
                     String searchText = binding.searchEdittext.getText().toString().trim();
                     String startL = "https://www.googleapis.com/books/v1/volumes?q=";
